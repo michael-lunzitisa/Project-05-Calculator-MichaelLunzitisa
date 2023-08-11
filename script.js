@@ -34,7 +34,7 @@ for (let i = 0; i < numTouch.length; i++) {
   })
 }
 
-// E
+
 acButton.addEventListener('click', () => {
   inputValue.value = '';
   calculButton.innerText = '';
