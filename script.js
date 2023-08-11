@@ -17,6 +17,34 @@ const equalsButton = document.getElementById('equals');
 const percentageButton = document.getElementById('percentage');
 const plusoumoinsButton = document.getElementById('plusoumoins');
 
+
+addButton.addEventListener('click', ()=>{
+  inputValue.value +='+';
+  calculButton.innerHTML += inputValue.value;
+})
+moinButton.addEventListener('click', ()=>{
+  inputValue.value +='-';
+  calculButton.innerHTML += inputValue.value;
+})
+
+mulButton.addEventListener('click', ()=>{
+  inputValue.value +='x';
+  calculButton.innerHTML += inputValue.value;
+})
+
+divButton.addEventListener('click', ()=>{
+  inputValue.value +='÷';
+  calculButton.innerHTML += inputValue.value;
+})
+
+equalsButton.addEventListener('click', ()=>{
+  inputValue.value +='=';
+  calculButton.innerHTML += inputValue.value;
+})
+
+
+
+
 const form = document.querySelector('form');
 
 const calculButton = document.getElementById('calcul');
@@ -25,7 +53,13 @@ form.addEventListener('click', (e) => {
   e.preventDefault();
 })
 
-// on parcour touts le button numérique
+// lorque on clique sur button AC on reset
+acButton.addEventListener('click', () => {
+  inputValue.value = '';
+  calculButton.innerText = '';
+
+})
+// on parcour touts les button numérique
 for (let i = 0; i < numTouch.length; i++) {
   numTouch[i].addEventListener('click', () => {
     inputValue.value += numTouch[i].innerText;
@@ -35,8 +69,3 @@ for (let i = 0; i < numTouch.length; i++) {
 }
 
 
-acButton.addEventListener('click', () => {
-  inputValue.value = '';
-  calculButton.innerText = '';
-
-})
