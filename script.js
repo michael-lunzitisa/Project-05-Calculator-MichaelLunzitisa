@@ -2,15 +2,23 @@
 
 // TODO: Faire la manipulation du DOM dans ce fichier
 
-// initialisation de nos variable
-const acButton = document.getElementById('input');
-const resetButton = document.getElementById('reset');
+// initialisation des variables
+const inputValue = document.getElementById('input');
+const acButton = document.getElementById('reset');
+const numTouch = document.querySelectorAll('.numpad');
 const clearButton = document.getElementById('clear');
 const equalsButton = document.getElementById('equals');
 const plusoumoinsButton = document.getElementById('plusoumoins');
 
 
-acButton.addEventListener("click", ()=> {
-    input.value = "";
-  });
-  
+for (let i = 0; i < numTouch.length; i++) {
+    numTouch[i].addEventListener('click', ()=>{
+        inputValue.value +=numTouch[i].innerText;
+    })
+}
+
+
+acButton.addEventListener('click',()=>{
+     inputValue.value='';
+    
+})
