@@ -15,7 +15,7 @@ const operatorsButtons = document.querySelectorAll('#plus, #times, #divideby, #m
 
 
 // différents opérateurs
-const operator = {
+const operators = {
   plus: '+',
   minus: '-',
   times: 'x',
@@ -23,8 +23,23 @@ const operator = {
   percentages: '%'
 }
 
+let operand1;
+let operand2;
+let operator;
+
+
+  equalClick.addEventListener('click', ()=>{
+  operand2 = input.value;
+
+  const result = eval(`${operand1} ${operator} ${operand2}`);
+  calculate.innerHTML =`= ${result}`;
+  operand1 = result;
+  operator = '';
+ 
+})
+
 // Écouteur d'événement sur le formulaire et on bloque la soumittion 
-form.addEventListener('click', (e) => {
+form.addEventListener('click', (e)=> {
   e.preventDefault();
 })
 // Ecouteur d'événement sur le button plus ou moin
@@ -33,13 +48,13 @@ toggleSign.addEventListener('click', ()=>{
   input.value = -input.value;
 })
 // Écouteur d'événement sur le bouton resetClick
-resetClick.addEventListener('click', () => {
+resetClick.addEventListener('click', ()=> {
   input.value = '';
   calculate.innerHTML = '';
 
 })
 
-clearClick.addEventListener('click', () => {
+clearClick.addEventListener('click', ()=> {
   // Supprime le dernier caractère de l'entrée
   input.value = input.value.slice(0, -1);
   calculate.innerHTML = '';
@@ -48,7 +63,7 @@ clearClick.addEventListener('click', () => {
 // Parcourir les bouttons de chiffres
 for (const button of buttons) {
   // Écouteur d'événement pour les boutons de chiffres
-  button.addEventListener('click', () => {
+  button.addEventListener('click', (number)=> {
     // Obtenir la valeur de l'entrée
     input.value += button.innerHTML;
     // on affiche le calcul au dessus de l'opération
@@ -59,9 +74,11 @@ for (const button of buttons) {
 // on parcour les boutton des opérateurs
 for (const operatorButton of operatorsButtons) {
   // Écouteur d'événement sur les boutons des opérations
-  operatorButton.addEventListener('click', () => {
+  operatorButton.addEventListener('click', ()=> {
+    operand1 = input.value ='';
+    
     // Obtenir la valeur de l'entrée
-    input.value += operatorButton.innerHTML;
+    //input.value += operatorButton.innerHTML;
     // on affiche le calcul au dessus de l'opération
     calculate.innerHTML += operatorButton.textContent;
   });
