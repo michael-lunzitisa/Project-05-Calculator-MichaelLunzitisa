@@ -5,10 +5,10 @@
 // initialisation des variables
 const input = document.getElementById('input');
 const form = document.querySelector('form');
-const resetClick = document.getElementById('reset');
-const clearClick = document.getElementById('clear');
+const resetCalc = document.getElementById('reset');
+const clearCalc = document.getElementById('clear');
 const buttons = document.querySelectorAll('.numpad');
-const equalClick = document.getElementById('equals');
+const equalCalc = document.getElementById('equals');
 const toggleSign = document.getElementById('plusoumoins');
 const calculate = document.getElementById('calcul');
 const operatorsButtons = document.querySelectorAll('#plus, #times, #divideby, #minus, #percentage');
@@ -28,7 +28,7 @@ let operand2;
 let operator;
 
 
-equalClick.addEventListener('click', () => {
+equalCalc.addEventListener('click', () => {
   operand2 = input.value;
 
   const result = eval(`${operand1} ${operator} ${operand2}`);
@@ -63,13 +63,13 @@ toggleSign.addEventListener('click', () => {
   input.value = -input.value;
 })
 // Écouteur d'événement sur le bouton resetClick
-resetClick.addEventListener('click', () => {
+resetCalc.addEventListener('click', () => {
   input.value = '';
   calculate.innerHTML = '';
 
 })
 
-clearClick.addEventListener('click', () => {
+clearCalc.addEventListener('click', () => {
   // Supprime le dernier caractère de l'entrée
   input.value = input.value.slice(0, -1);
   calculate.innerHTML = '';
@@ -92,7 +92,7 @@ for (const operatorButton of operatorsButtons) {
   // Écouteur d'événement sur les boutons des opérations
   operatorButton.addEventListener('click', (operator) => {
     operand1 = input.value = '';
-    input.value = '';
+    
     // Obtenir la valeur de l'entrée
     //input.value += operatorButton.innerHTML;
     // on affiche le calcul au dessus de l'opération
