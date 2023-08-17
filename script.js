@@ -1,7 +1,3 @@
-//{ calculate } import './calculator';
-
-// TODO: Faire la manipulation du DOM dans ce fichier
-
 // initialisation des variables
 const input = document.getElementById('input');
 const form = document.querySelector('form');
@@ -38,15 +34,6 @@ equalCalc.addEventListener('click', () => {
 
 })
 
-const cheeckLenght = (input) => {
-  if (input.value.lenght > 10) {
-    console.log('La longueur max et de 10 caractère');
-    input.value = input.value.substring(0, 10);
-
-  }
-}
-cheeckLenght(input);
-
 // Écouteur d'événement sur le formulaire et on bloque la soumittion 
 form.addEventListener('click', (e) => {
   e.preventDefault();
@@ -79,6 +66,9 @@ clearCalc.addEventListener('click', () => {
 for (const button of buttons) {
   // Écouteur d'événement pour les boutons de chiffres
   button.addEventListener('click', () => {
+    if (input.value.length > 10) {
+      input.value = input.value.slice(0, 10);
+    }
 
     // Obtenir la valeur de l'entrée
     input.value += button.innerHTML;
@@ -90,13 +80,16 @@ for (const button of buttons) {
 // on parcour les boutton des opérateurs
 for (const operatorButton of operatorsButtons) {
   // Écouteur d'événement sur les boutons des opérations
-  operatorButton.addEventListener('click', (operator) => {
-    operand1 = input.value = '';
+  operatorButton.addEventListener('click', (e) => {
+    operator = event.target.innerHTML
+    
+    operand1 = input.value;
+    input.value ='';
+    e.target.innerHTML;
     
     // Obtenir la valeur de l'entrée
     //input.value += operatorButton.innerHTML;
     // on affiche le calcul au dessus de l'opération
-    calculate.innerHTML += operatorButton.textContent;
+    calculate.innerText += operatorButton.textContent;
   });
 }
-
