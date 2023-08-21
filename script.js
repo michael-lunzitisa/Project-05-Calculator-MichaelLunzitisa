@@ -24,15 +24,6 @@ let operand2;
 let operator;
 
 
-equalCalc.addEventListener('click', () => {
-  operand2 = input.value;
-
-  const result = eval(`${operand1} ${operator} ${operand2}`);
-  calculate.innerHTML = `= ${result}`;
-  operand1 = result;
-  operator = '';
-
-})
 
 // Écouteur d'événement sur le formulaire et on bloque la soumittion 
 form.addEventListener('click', (e) => {
@@ -45,7 +36,7 @@ input.addEventListener('keydown', (e) => {
 })
 // Ecouteur d'événement sur le button plus ou moin
 toggleSign.addEventListener('click', () => {
-  
+
   // inverse le signe de la valeur de l'entrée
   input.value = -input.value;
 })
@@ -81,15 +72,25 @@ for (const button of buttons) {
 for (const operatorButton of operatorsButtons) {
   // Écouteur d'événement sur les boutons des opérations
   operatorButton.addEventListener('click', (e) => {
-    operator = event.target.innerHTML
-    
+    if (times.textContent === '×') {
+      times.value = '*';
+      
+    }
+    operator = e.target.innerHTML
     operand1 = input.value;
-    input.value ='';
+    input.value = '';
     e.target.innerHTML;
-    
-    // Obtenir la valeur de l'entrée
-    //input.value += operatorButton.innerHTML;
     // on affiche le calcul au dessus de l'opération
     calculate.innerText += operatorButton.textContent;
   });
 }
+
+equalCalc.addEventListener('click', () => {
+  operand2 = input.value;
+
+  const result = eval(`${operand1} ${operator} ${operand2}`);
+  calculate.innerHTML = `${operand1} ${operator} ${operand2} = ${result}`;
+  operand1 = result;
+  operator = '';
+
+})

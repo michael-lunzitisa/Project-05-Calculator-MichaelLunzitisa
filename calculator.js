@@ -3,5 +3,3 @@
 function calculate(expression) {
   return expression;
 }
-
-export { calculate };
