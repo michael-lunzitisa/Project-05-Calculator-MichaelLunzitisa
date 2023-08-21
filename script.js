@@ -1,4 +1,7 @@
 // initialisation des variables
+
+
+// initialisation des variables
 const input = document.getElementById('input');
 const form = document.querySelector('form');
 const resetCalc = document.getElementById('reset');
@@ -9,6 +12,7 @@ const toggleSign = document.getElementById('plusoumoins');
 const calculate = document.getElementById('calcul');
 const operatorsButtons = document.querySelectorAll('#plus, #times, #divideby, #minus');
 const percentageButton = document.getElementById('percentage');
+
 
 const resultat = ()=>{
   if(eq == true && pr == true){
