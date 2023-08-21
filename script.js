@@ -7,23 +7,47 @@ const buttons = document.querySelectorAll('.numpad');
 const equalCalc = document.getElementById('equals');
 const toggleSign = document.getElementById('plusoumoins');
 const calculate = document.getElementById('calcul');
-const operatorsButtons = document.querySelectorAll('#plus, #times, #divideby, #minus, #percentage');
+const operatorsButtons = document.querySelectorAll('#plus, #times, #divideby, #minus');
+const percentageButton = document.getElementById('percentage');
 
+const resultat = ()=>{
+  if(eq == true && pr == true){
+    calculate.innerText += ' '+input.value;
+  }
+    for(let i of calculate.innerText){
+      if(i == '÷'){
+        calculate.innerText = calculate.innerText.split("÷").join('/')
+      }
+      if(i == '×'){
+        calculate.innerText = calculate.innerText.split("×").join('*')
+      }
+     }
+    // s'il ne pas un nbre on supprime le dernier element
+    if(isNaN(calculate.innerText.slice(-1)) == true){
+    calculate.innerText = calculate.innerText.slice(0,-1)
+    }
 
-// différents opérateurs
-const operators = {
-  plus: '+',
-  minus: '-',
-  times: 'x',
-  divideby: '+',
-  percentages: '%'
-}
-
-let operand1;
-let operand2;
-let operator;
-
-
+    let rep = eval(calculate.innerText);
+    return rep;
+  } 
+let eq = true;
+equalCalc.addEventListener('click', ()=>{
+  if(eq == true){
+    input.value =  resultat();
+    calculate.innerText += ' = ';
+    eq = false
+    pr = true
+  }
+} )
+let pr=true;
+percentageButton.addEventListener('click', ()=>{
+  if(pr == true){
+    input.value =  resultat() / 100;
+    calculate.innerText += ' = ';
+    pr = false
+    eq = true
+  }
+})
 
 // Écouteur d'événement sur le formulaire et on bloque la soumittion 
 form.addEventListener('click', (e) => {
@@ -32,11 +56,9 @@ form.addEventListener('click', (e) => {
 // Empecher l'entrée sur l'orsqu'on appuis sur le clavier
 input.addEventListener('keydown', (e) => {
   e.preventDefault();
-
 })
 // Ecouteur d'événement sur le button plus ou moin
 toggleSign.addEventListener('click', () => {
-
   // inverse le signe de la valeur de l'entrée
   input.value = -input.value;
 })
@@ -60,37 +82,33 @@ for (const button of buttons) {
     if (input.value.length > 10) {
       input.value = input.value.slice(0, 10);
     }
-
-    // Obtenir la valeur de l'entrée
-    input.value += button.innerHTML;
-    // on affiche le calcul au dessus de l'opération
-    calculate.innerHTML += button.textContent;
+    checkInput(button.innerHTML);
   })
 }
-
+// vérification des inputs
+function checkInput(numberInput){
+  if(numberInput == '0'){
+    if(input.value != '0'){
+      input.value += numberInput;
+    }
+  }
+  else if(numberInput == '.'){
+    if(input.value.includes('.') == false){
+      input.value += numberInput;
+    }
+  }
+  else{
+    input.value += numberInput;
+  }
+}
 // on parcour les boutton des opérateurs
 for (const operatorButton of operatorsButtons) {
   // Écouteur d'événement sur les boutons des opérations
-  operatorButton.addEventListener('click', (e) => {
-    if (times.textContent === '×') {
-      times.value = '*';
-      
-    }
-    operator = e.target.innerHTML
-    operand1 = input.value;
-    input.value = '';
-    e.target.innerHTML;
-    // on affiche le calcul au dessus de l'opération
-    calculate.innerText += operatorButton.textContent;
+  operatorButton.addEventListener('click', () => {
+   if( calculate.innerText == '') {  calculate.innerText = input.value +' '+ operatorButton.innerText}
+   else{
+    calculate.innerText += ' '+ input.value +' '+ operatorButton.innerText;
+   }
+   input.value =''
   });
 }
-
-equalCalc.addEventListener('click', () => {
-  operand2 = input.value;
-
-  const result = eval(`${operand1} ${operator} ${operand2}`);
-  calculate.innerHTML = `${operand1} ${operator} ${operand2} = ${result}`;
-  operand1 = result;
-  operator = '';
-
-})
