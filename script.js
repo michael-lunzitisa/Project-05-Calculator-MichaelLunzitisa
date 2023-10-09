@@ -90,19 +90,19 @@ for (const button of buttons) {
   })
 }
 // vérification des inputs
-function checkInput(numberInput){
-  if(numberInput == '0'){
+function checkInput(chiffre){
+  if(chiffre == '0'){
     if(input.value != '0'){
-      input.value += numberInput;
+      input.value += chiffre;
     }
   }
-  else if(numberInput == '.'){
+  else if(chiffre == '.'){
     if(input.value.includes('.') == false){
-      input.value += numberInput;
+      input.value += chiffre;
     }
   }
   else{
-    input.value += numberInput;
+    input.value += chiffre;
   }
 }
 // on parcour les boutton des opérateurs
