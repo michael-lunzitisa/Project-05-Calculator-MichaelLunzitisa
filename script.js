@@ -51,7 +51,7 @@ percentageButton.addEventListener('click', ()=>{
 })
 
 // Écouteur d'événement sur le formulaire et on bloque la soumittion 
-form.addEventListener('click', (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
 })
 // Empecher l'entrée sur l'orsqu'on appuis sur le clavier
@@ -72,8 +72,8 @@ resetCalc.addEventListener('click', () => {
 
 clearCalc.addEventListener('click', () => {
   // Supprime le dernier caractère de l'entrée
-  input.value = input.value.slice(0, -1);
-  calculate.innerHTML = '';
+  input.value ="";
+  
 })
 
 // Parcourir les bouttons de chiffres
@@ -86,6 +86,8 @@ for (const button of buttons) {
     checkInput(button.innerHTML);
   })
 }
+
+
 // vérification des inputs
 function checkInput(chiffre){
   if(chiffre == '0'){
@@ -106,7 +108,9 @@ function checkInput(chiffre){
 for (const operatorButton of operatorsButtons) {
   // Écouteur d'événement sur les boutons des opérations
   operatorButton.addEventListener('click', () => {
-   if( calculate.innerText == '') {  calculate.innerText = input.value +' '+ operatorButton.innerText}
+   if( calculate.innerText == '') { 
+     calculate.innerText = input.value +' '+ operatorButton.innerText
+    }
    else{
     calculate.innerText += ' '+ input.value +' '+ operatorButton.innerText;
    }
