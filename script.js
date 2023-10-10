@@ -1,7 +1,4 @@
 // initialisation des variables
-
-
-// initialisation des variables
 const input = document.getElementById('input');
 const form = document.querySelector('form');
 const resetCalc = document.getElementById('reset');
