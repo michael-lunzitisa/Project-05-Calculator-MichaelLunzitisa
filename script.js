@@ -108,11 +108,16 @@ function checkInput(chiffre){
 for (const operatorButton of operatorsButtons) {
   // Écouteur d'événement sur les boutons des opérations
   operatorButton.addEventListener('click', () => {
-   if( calculate.innerText == '') { 
-     calculate.innerText = input.value +' '+ operatorButton.innerText
-    }
+   if( calculate.textContent == '') { 
+ calculate.innerText = input.value +' '+ operatorButton.textContent
+}
    else{
-    calculate.innerText += ' '+ input.value +' '+ operatorButton.innerText;
+    if(calculate.textContent.includes('=')==true){
+      calculate.textContent = input.value +' '+ operatorButton.textContent;
+
+    }else{
+      calculate.textContent += ' '+ input.value +' '+ operatorButton.textContent;
+    }
    }
    input.value =''
   });
