@@ -90,6 +90,9 @@ for (const button of buttons) {
 
 // vérification des inputs
 function checkInput(chiffre){
+  if(eq==false){
+    eq = true;
+  }
   if(chiffre == '0'){
     if(input.value != '0'){
       input.value += chiffre;
@@ -108,13 +111,12 @@ function checkInput(chiffre){
 for (const operatorButton of operatorsButtons) {
   // Écouteur d'événement sur les boutons des opérations
   operatorButton.addEventListener('click', () => {
-   if( calculate.textContent == '') { 
- calculate.innerText = input.value +' '+ operatorButton.textContent
+   if( calculate.textContent) { 
+      calculate.innerText = input.value +' '+ operatorButton.textContent
 }
    else{
     if(calculate.textContent.includes('=')==true){
       calculate.textContent = input.value +' '+ operatorButton.textContent;
-
     }else{
       calculate.textContent += ' '+ input.value +' '+ operatorButton.textContent;
     }
