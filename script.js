@@ -117,8 +117,11 @@ function checkInput(chiffre){
 for (const operatorButton of operatorsButtons) {
   // Écouteur d'événement sur les boutons des opérations
   operatorButton.addEventListener('click', () => {
-   if( calculate.textContent) { 
-      calculate.textContent = input.value +' '+ operatorButton.textContent
+    if(calculate.textContent ==''){
+      calculate.textContent += input.value +' '+ operatorButton.textContent;
+    }
+else if(( calculate.textContent !='' && input.value =='') && isNaN(calculate.textContent.slice(-1))==true) { 
+  calculate.textContent = calculate.textContent.slice(0,-1) +' '+ operatorButton.textContent
 }
    else{
     if(calculate.textContent.includes('=')==true){
