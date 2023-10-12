@@ -11,16 +11,22 @@ const operatorsButtons = document.querySelectorAll('#plus, #times, #divideby, #m
 const percentageButton = document.getElementById('percentage');
 
 
+const historique = () =>{
+
+  
+}
+
+
 const resultat = ()=>{
   if(eq == true && pr == true){
     calculate.innerText += ' '+input.value;
   }
     for(let i of calculate.innerText){
       if(i == '÷'){
-        calculate.innerText = calculate.innerText.split("÷").join('/')
+        calculate.innerText = calculate.innerText.replace('÷', '/');
       }
       if(i == '×'){
-        calculate.innerText = calculate.innerText.split("×").join('*')
+        calculate.innerText = calculate.innerText.replace('×', '*');
       }
      }
     // s'il ne pas un nbre on supprime le dernier element
@@ -35,7 +41,7 @@ let eq = true;
 equalCalc.addEventListener('click', ()=>{
   if(eq == true){
     input.value =  resultat();
-    calculate.innerText += ' = ';
+    calculate.textContent += ' = ';
     eq = false
     pr = true
   }
@@ -44,7 +50,7 @@ let pr=true;
 percentageButton.addEventListener('click', ()=>{
   if(pr == true){
     input.value =  resultat() / 100;
-    calculate.innerText += ' = ';
+    calculate.textContent += ' = ';
     pr = false
     eq = true
   }
@@ -112,7 +118,7 @@ for (const operatorButton of operatorsButtons) {
   // Écouteur d'événement sur les boutons des opérations
   operatorButton.addEventListener('click', () => {
    if( calculate.textContent) { 
-      calculate.innerText = input.value +' '+ operatorButton.textContent
+      calculate.textContent = input.value +' '+ operatorButton.textContent
 }
    else{
     if(calculate.textContent.includes('=')==true){
